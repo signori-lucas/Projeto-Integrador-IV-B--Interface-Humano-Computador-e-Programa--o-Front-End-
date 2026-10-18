@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portal Conecta | Comunicação Interna</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header class="header">
+    <div class="header__container">
+      <a href="#inicio" class="logo" data-pagina="inicio" aria-label="Portal Conecta - Início">
+        <svg class="logo__icone" viewBox="0 0 40 40" aria-hidden="true">
+          <rect width="40" height="40" rx="10" fill="currentColor"/>
+          <circle cx="14" cy="20" r="6" fill="none" stroke="#fff" stroke-width="3"/>
+          <circle cx="26" cy="20" r="6" fill="none" stroke="#fff" stroke-width="3"/>
+        </svg>
+        <span class="logo__texto">Conecta<strong>Corp</strong></span>
+      </a>
+
+      <button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu-principal">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="menu" id="menu-principal" aria-label="Menu principal">
+        <ul class="menu__lista">
+          <li><a href="#inicio" class="menu__link menu__link--ativo" data-pagina="inicio">Início</a></li>
+          <li><a href="#noticias" class="menu__link" data-pagina="noticias">Notícias</a></li>
+        </ul>
+      </nav>
+
+      <!-- Área do usuário: deslogado -->
+      <button class="botao botao--primario" id="botao-entrar">Entrar</button>
+
+      <!-- Área do usuário: logado -->
+      <div class="usuario" id="usuario" hidden>
+        <button class="usuario__botao" id="usuario-botao" aria-haspopup="true" aria-expanded="false">
+          <span class="avatar avatar--pequeno" id="usuario-avatar"></span>
+          <span class="usuario__nome" id="usuario-nome"></span>
+          <span class="usuario__seta" aria-hidden="true">&#9662;</span>
+        </button>
+        <div class="usuario__menu" id="usuario-menu" hidden>
+          <p class="usuario__email" id="usuario-email"></p>
+          <button class="usuario__item" id="botao-sair">Sair</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="conteudo">
+
+    <!-- ===== PÁGINA: INÍCIO ===== -->
+    <section id="pagina-inicio" class="pagina pagina--ativa" aria-labelledby="titulo-boas-vindas">
+
+      <div class="painel painel--boas-vindas">
+        <div>
+          <h1 id="titulo-boas-vindas">Olá!</h1>
+          <p>Tudo o que você precisa em um só lugar: comunicados, políticas e a cultura da empresa.</p>
+        </div>
+        <p class="data-hoje" id="data-hoje"></p>
+      </div>
+
+      <div class="grade">
+        <section class="painel painel--feed" aria-labelledby="titulo-feed">
+          <div class="painel__cabecalho">
+            <h2 id="titulo-feed">Fique por dentro</h2>
+            <a href="#noticias" class="link-ver-todas" data-pagina="noticias">Ver todas &rarr;</a>
+          </div>
+          <div class="feed" id="feed-inicio"></div>
+        </section>
+
+        <aside class="painel painel--aniversariantes" aria-labelledby="titulo-aniversariantes">
+          <div class="painel__cabecalho">
+            <h2 id="titulo-aniversariantes">Aniversariantes</h2>
+          </div>
+          <ul class="aniversariantes" id="lista-aniversariantes"></ul>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ===== PÁGINA: NOTÍCIAS ===== -->
+    <section id="pagina-noticias" class="pagina" aria-labelledby="titulo-noticias">
+      <div class="painel">
+        <div class="painel__cabecalho">
+          <h1 id="titulo-noticias">Notícias</h1>
+        </div>
+        <div class="filtros" id="filtros" role="group" aria-label="Filtrar por categoria"></div>
+        <div class="feed feed--grade" id="feed-noticias"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="rodape">
+    <p>&copy; 2026 ConectaCorp &middot; Portal de Comunicação Interna</p>
+  </footer>
+
+  <!-- Modal de leitura da notícia -->
+  <div class="modal" id="modal" hidden>
+    <div class="modal__fundo" data-fechar></div>
+    <article class="modal__conteudo" role="dialog" aria-modal="true" aria-labelledby="modal-titulo">
+      <button class="modal__fechar" data-fechar aria-label="Fechar">&times;</button>
+      <img class="modal__imagem" id="modal-imagem" alt="" hidden>
+      <span class="tag" id="modal-categoria"></span>
+      <h2 id="modal-titulo"></h2>
+      <p class="noticia__meta" id="modal-meta"></p>
+      <p id="modal-texto"></p>
+    </article>
+  </div>
+
+  <!-- Modal de login -->
+  <div class="modal" id="modal-login" hidden>
+    <div class="modal__fundo" data-fechar></div>
+    <div class="modal__conteudo modal__conteudo--estreito" role="dialog" aria-modal="true" aria-labelledby="login-titulo">
+      <button class="modal__fechar" data-fechar aria-label="Fechar">&times;</button>
+      <h2 id="login-titulo">Entrar no portal</h2>
+      <p class="formulario__descricao">Informe seus dados para acessar.</p>
+      <form class="formulario" id="form-login">
+        <label class="formulario__campo">
+          <span>Nome</span>
+          <input type="text" id="login-nome" name="nome" autocomplete="name" required>
+        </label>
+        <label class="formulario__campo">
+          <span>E-mail</span>
+          <input type="email" id="login-email" name="email" autocomplete="email" required>
+        </label>
+        <label class="formulario__campo">
+          <span>Senha</span>
+          <input type="password" id="login-senha" name="senha" autocomplete="current-password" required>
+        </label>
+        <button type="submit" class="botao botao--primario botao--largo">Entrar</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/dados.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
